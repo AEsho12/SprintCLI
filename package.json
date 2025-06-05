@@ -1,0 +1,42 @@
+{
+  "name": "spring-cli-create",
+  "version": "1.0.0",
+  "description": "A CLI tool to quickly create Spring Boot applications with a modern project structure",
+  "main": "index.js",
+  "bin": {
+    "spring-cli-create": "./bin/create-spring-app.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spring",
+    "spring-boot",
+    "cli",
+    "generator",
+    "scaffold"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "inquirer": "^9.2.13",
+    "unzipper": "^0.10.11",
+    "chalk": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/create-spring-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/create-spring-app/issues"
+  },
+  "homepage": "https://github.com/yourusername/create-spring-app#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}
