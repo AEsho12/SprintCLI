@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring CLI Create - Create Spring Boot Apps in Seconds</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    <style>
+        body {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .cta {
+            padding: 6rem 2rem;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cta p {
+            font-size: 1.125rem;
+            color: #94a3b8;
+            margin-bottom: 3rem;
+        }
+
+        .install-box {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .install-command {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: #22c55e;
+            text-align: left;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #374151;
+            border: 1px solid #4b5563;
+            color: #d1d5db;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-button:hover {
+            background: #4b5563;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #4F46E5, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(45deg, #4F46E5, #7C3AED);
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #e2e8f0;
+            margin: 0 auto 32px;
+            animation: fadeInUp 0.6s ease-out, bounce 2s infinite;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .demo-container {
+            background: #2d3748;
+            border-radius: 16px;
+            padding: 2rem;
+            color: white;
+            font-family: 'Fira Code', Monaco, monospace;
+            overflow-x: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid #4a5568;
+            min-height: 400px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .demo-line {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInLine 0.5s ease-out forwards;
+        }
+        .demo-line:nth-child(1) { animation-delay: 0s; }
+        .demo-line:nth-child(2) { animation-delay: 1.5s; }
+        .demo-line:nth-child(3) { animation-delay: 3s; }
+        .demo-line:nth-child(4) { animation-delay: 4.5s; }
+        .demo-line:nth-child(5) { animation-delay: 6s; }
+        .demo-line:nth-child(6) { animation-delay: 7.5s; }
+        .demo-line:nth-child(7) { animation-delay: 9s; }
+        .demo-line:nth-child(8) { animation-delay: 10.5s; }
+        .demo-line:nth-child(9) { animation-delay: 12s; }
+        .demo-line:nth-child(10) { animation-delay: 13.5s; }
+        .demo-line:nth-child(11) { animation-delay: 15s; }
+        .prompt {
+            color: #6db33f;
+            font-weight: bold;
+        }
+        .command {
+            color: #e2e8f0;
+        }
+        .output {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #6db33f;
+            animation: typing 1.5s steps(40, end), blink 0.5s step-end infinite alternate;
+            max-width: 600px;
+        }
+        @keyframes fadeInLine {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .feature-card {
+            background: #2d3748;
+            border: 1px solid #4a5568;
+        }
+        .install-card {
+            background: #2d3748;
+            border: 1px solid #4a5568;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold gradient-text">🌱</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="https://github.com/AEsho12/SprintCLI" class="text-gray-300 hover:text-white cursor-pointer">GitHub</a>
+                    <a href="https://www.npmjs.com/package/spring-cli-create" class="text-gray-300 hover:text-white cursor-pointer">npm</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 bg-gray-900 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <div class="hero-badge">🚀 Now available on npm</div>
+                        <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+                            <span class="block">Create Spring Boot</span>
+                            <span class="block gradient-text">Apps in Seconds</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
+                            A powerful CLI tool that helps you create Spring Boot applications with a modern project structure. Get started in seconds with interactive prompts and automatic setup.
+                        </p>
+                        <div class="mt-5 sm:mt-8 flex justify-center">
+                            <div class="rounded-md shadow">
+                                <a href="#installation" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white gradient-bg hover:opacity-90 md:py-4 md:text-lg md:px-10">
+                                    Get Started
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-12 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-indigo-400 font-semibold tracking-wide uppercase">Demo</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    See It In Action
+                </p>
+            </div>
+            <div class="mt-10">
+                <div class="demo-container" id="demoTerminal">
+                    <div class="demo-line">
+                        <span class="prompt">$ </span>
+                        <span class="command typing-animation">npx spring-cli-create</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">🌱 Welcome to Spring CLI Create!</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">? What's your project name? my-awesome-app</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">? Choose your dependencies: Web, JPA, Security</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">? Select build tool: Maven</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">? Java version: 17</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">✨ Creating your Spring Boot application...</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">📦 Installing dependencies...</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">🎉 Project created successfully!</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="prompt">$ </span>
+                        <span class="command typing-animation">cd my-awesome-app && ./mvnw spring-boot:run</span>
+                    </div>
+                    <div class="demo-line">
+                        <span class="output">🚀 Your application is running on http://localhost:8080</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <div class="py-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base gradient-text font-semibold tracking-wide uppercase">Features</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Everything you need to get started
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md gradient-bg text-white">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <div class="ml-16">
+                            <h3 class="text-lg leading-6 font-medium text-white">Interactive Setup</h3>
+                            <p class="mt-2 text-base text-gray-300">
+                                Choose your dependencies and configuration through an intuitive command-line interface.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md gradient-bg text-white">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                        <div class="ml-16">
+                            <h3 class="text-lg leading-6 font-medium text-white">Modern Structure</h3>
+                            <p class="mt-2 text-base text-gray-300">
+                                Get a well-organized project structure following Spring Boot best practices.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md gradient-bg text-white">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                            </svg>
+                        </div>
+                        <div class="ml-16">
+                            <h3 class="text-lg leading-6 font-medium text-white">Automatic Setup</h3>
+                            <p class="mt-2 text-base text-gray-300">
+                                Maven Wrapper and other configurations are automatically set up for you.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md gradient-bg text-white">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                        </div>
+                        <div class="ml-16">
+                            <h3 class="text-lg leading-6 font-medium text-white">Quick Start</h3>
+                            <p class="mt-2 text-base text-gray-300">
+                                Get your Spring Boot application up and running in minutes, not hours.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Installation Section -->
+    <div id="installation" class="py-12" style="background-color: #0f172a;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section class="cta" id="install">
+                <div class="cta-container">
+                    <h2>Ready to 10x your development speed?</h2>
+                    <p>Join thousands of developers who have streamlined their workflow</p>
+
+                    <div>
+                    <div class="install-box">
+                        <div class="install-command">npm install -g project-preset-cli</div>
+                        <button class="copy-button" onclick="copyCommand()">Copy</button>
+                    </div>
+
+                    <div class="install-box">
+                        <div class="install-command">create-spring-app</div>
+                        <button class="copy-button" onclick="copyCommand()">Copy</button>
+                    </div>
+
+
+                    </div>
+                    <div class="install-box">
+                        <div class="install-command">npx spring-cli-create</div>
+                        <button class="copy-button" onclick="copyCommand()">Copy</button>
+                    </div>
+
+
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="flex justify-center space-x-6 md:order-2">
+                <a href="https://github.com/AEsho12/SprintCLI" class="text-gray-400 hover:text-gray-300">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2024 Spring CLI Create. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-bash.min.js"></script>
+    <script>
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+
+
+                    if (entry.target.id === 'demoTerminal') {
+                        startDemoAnimation();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        function startDemoAnimation() {
+            const demoLines = document.querySelectorAll('#demoTerminal .demo-line');
+            demoLines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.style.opacity = '1';
+                    line.style.transform = 'translateY(0)';
+                }, index * 1500);
+            });
+        }
+
+
+        function copyCode(button) {
+            const codeBlock = button.previousElementSibling;
+            const code = codeBlock.textContent;
+
+            navigator.clipboard.writeText(code).then(() => {
+                const originalIcon = button.innerHTML;
+                button.innerHTML = `
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                `;
+                button.classList.add('bg-green-600');
+
+                setTimeout(() => {
+                    button.innerHTML = originalIcon;
+                    button.classList.remove('bg-green-600');
+                }, 2000);
+            });
+        }
+
+      
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.feature-card, .install-card, #demoTerminal');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
