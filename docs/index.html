@@ -207,6 +207,103 @@
             background: #2d3748;
             border: 1px solid #4a5568;
         }
+        /* Other Projects Section */
+        .other-projects {
+            padding: 6rem 2rem;
+            background: #111827; /* bg-gray-900 to match hero */
+            color: #e2e8f0;
+            text-align: center;
+        }
+        .section-header {
+            margin-bottom: 3rem;
+        }
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #e2e8f0;
+            margin: 0 auto 32px;
+            animation: fadeInUp 0.6s ease-out, bounce 2s infinite;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            color: #e2e8f0;
+        }
+        .section-description {
+            font-size: 1.125rem;
+            color: #94a3b8; /* Lighter gray for contrast */
+        }
+        .project-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #1e293b; /* Darker background for card */
+            border-radius: 1rem;
+            border: 1px solid #334155;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        .project-description {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .project-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #4f46e5; /* Indigo */
+            color: white;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #4338ca; /* Darker Indigo */
+        }
+        .btn-secondary {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: transparent;
+            color: #ffffff; /* White */
+            font-weight: 600;
+            border: 1px solid #4f46e5;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover {
+            background-color: #4f46e5;
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-gray-900">
@@ -215,10 +312,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <span class="text-2xl font-bold gradient-text">🌱</span>
+                    <a href="https://sprint-cli.vercel.app/" class="text-2xl font-bold gradient-text" target="_blank">🌱</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <a href="https://github.com/AEsho12/SprintCLI" class="text-gray-300 hover:text-white cursor-pointer">GitHub</a>
+                    <a href="https://github.com/AEsho12/SprintCLI" class="text-gray-300 hover:text-white cursor-pointer" target="_blank">GitHub</a>
                     <a href="https://www.npmjs.com/package/spring-cli-create" class="text-gray-300 hover:text-white cursor-pointer">npm</a>
                 </div>
             </div>
@@ -408,11 +505,34 @@
         </div>
     </div>
 
+    <!-- Other Projects Section -->
+    <section class="other-projects">
+        <div class="section-header">
+            <div class="section-badge">More Tools</div>
+            <h2 class="section-title">Check out our other developer tools</h2>
+            <p class="section-description">
+                Discover more tools to enhance your development workflow
+            </p>
+        </div>
+        <div class="project-card animate-fade-in">
+            <div class="project-icon">⚡</div>
+            <h3 class="project-title">Preset CLI</h3>
+            <p class="project-description">
+                A powerful command-line tool that helps you save and deploy project templates instantly.
+                Stop wasting time setting up the same project structure over and over again.
+            </p>
+            <div class="project-links">
+                <a href="https://project-cli.vercel.app/" class="btn-secondary" target="_blank">Visit Website</a>
+                <a href="https://www.npmjs.com/package/preset-cli" class="btn-primary" target="_blank">View on npm</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-900">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
             <div class="flex justify-center space-x-6 md:order-2">
-                <a href="https://github.com/AEsho12/SprintCLI" class="text-gray-400 hover:text-gray-300">
+                <a href="https://github.com/AEsho12/SprintCLI" class="text-gray-400 hover:text-gray-300" target="_blank">
                     <span class="sr-only">GitHub</span>
                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
@@ -480,11 +600,14 @@
             });
         }
 
-      
+
         document.addEventListener('DOMContentLoaded', () => {
             const animatedElements = document.querySelectorAll('.feature-card, .install-card, #demoTerminal');
             animatedElements.forEach(el => observer.observe(el));
         });
+
+        // Added for Preset CLI section links
+        document.querySelectorAll('.project-links a').forEach(link => link.setAttribute('target', '_blank'));
     </script>
 </body>
 </html>
